@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 source env/bin/activate
-exec scrapy crawl search
+exec flock -xn /run/rental_scraper/crawl-search.lock -c script/crawl-search.sh

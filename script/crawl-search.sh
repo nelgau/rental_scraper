@@ -1,3 +1,3 @@
 #!/bin/bash
 set -euo pipefail
-scrapy crawl search
+exec scrapy crawl search
