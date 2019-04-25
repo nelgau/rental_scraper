@@ -6,6 +6,7 @@ from store.models import Neighborhood, NeighborhoodGroup
 from datetime import timezone
 from pprint import pprint
 from six.moves.urllib.parse import urljoin
+import pytz
 
 rentals = Blueprint('rentals', __name__)
 service = Service()
@@ -23,7 +24,8 @@ def get_nh_query_description(nh_id):
     return Neighborhood.by_id(nh_id).name if nh_id else 'All Neighborhoods'
 
 def string_date(dt):
-    return dt.replace(tzinfo=timezone.utc).astimezone(tz=None).strftime('%B %d \u2014 %l:%M %p')
+    pacific_tz = pytz.timezone('US/Pacific')
+    return dt.replace(tzinfo=timezone.utc).astimezone(tz=pacific_tz).strftime('%B %d \u2014 %l:%M %p')
 
 def present_grouped_rentals(grouped):
     return [[string_date(dt), [RentalPresenter(r) for r in g]] for dt, g in grouped]
