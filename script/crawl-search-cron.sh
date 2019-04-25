@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 source env/bin/activate
-scrapy crawl search
+exec scrapy crawl search
