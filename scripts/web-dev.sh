@@ -1,4 +1,5 @@
 #!/bin/bash
 set -euo pipefail
-export FLASH_ENV=production
+export FLASK_DEBUG=1
+export FLASH_ENV=development
 exec python3 web.py
