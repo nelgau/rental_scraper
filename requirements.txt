@@ -1,0 +1,8 @@
+scrapy
+js2xml
+sqlalchemy
+flask
+bootstrap-flask
+gunicorn
+gevent
+eventlet (?)

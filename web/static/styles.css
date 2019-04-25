@@ -1,0 +1,318 @@
+
+@font-face {
+  font-family:'PostGrotesk';
+  font-weight: 400;
+  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.eot');
+  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.eot') format('eot'), 
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.woff') format('woff2'), 
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.woff') format('woff'), 
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.svg') format('svg'),
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.otf') format('opentype');
+}
+
+@font-face {
+  font-family:'PostGrotesk';
+  font-weight: 500;
+  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.eot');
+  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.eot') format('eot'), 
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.woff') format('woff2'), 
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.woff') format('woff'), 
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.svg') format('svg'),
+  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.otf') format('opentype');
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: PostGrotesk,sans-serif,San Francisco,Roboto,Segoe UI Bold,Arial,sans-serif;
+}
+
+.fill-parent {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.nav-container {
+  display: block;
+  width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255,255,255,1);
+}
+
+.content-container {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  width: 100%; 
+}
+
+.rentals-container {
+  width: 50%;
+  min-width: 250px;
+  max-width: 720px;
+  height: 100%;
+  overflow-y: scroll;
+
+  padding: 5px 30px 0 30px;
+}
+
+.right-container {
+  position: relative;
+
+  flex-grow: 1;    
+  height: 100%;  
+
+  border-left: 1px solid #B6C0C9;
+}
+
+.frame-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.loading-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -10px;
+  right: -10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #edf0f0;
+  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.25);
+}
+
+.loading-text {
+  font-size: 24px;
+  color: #3b4144;
+}
+
+#trula-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.row-card {
+  padding-left: 15px;
+}
+
+.col-card {
+  width: 210px;
+
+  position: relative;
+  min-height: 1px;
+  margin-right: 15px;
+}
+
+.card {
+  color: #3b4144;
+  margin-bottom: 15px;
+  border-color: #d5d5d5;
+}
+
+.card:hover { 
+  box-shadow: 0 0 8px rgba(33,33,33,.3); 
+}
+
+.card-img {
+  min-height: 125px;
+
+  width: 100%;
+  background-size: cover!important;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  background-color: #55595c;
+}
+
+.taglist-container {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  left: 0;
+}
+
+.taglist {
+  display: block;
+  box-sizing: border-box;
+  list-style-type: none;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: normal;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+
+  max-width: 99%;
+  margin: 0;
+  padding: 0;
+}
+
+.taglist > li {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2px 5px 2px 5px;
+  margin: 0;
+  margin-right: -3px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.taglist > li:first-child:before {
+  content: none;
+  margin-right: 2;
+}
+
+.taglist > li:before {
+  content: '\2022';
+  margin-right: 5px;
+}
+                          
+.tag-lowlight {
+  color: rgb(255, 255, 255);
+  background-color: rgba(71, 78, 82, 0.7);
+}
+
+.card-body {
+  padding: 7px 10px;
+}
+
+.card-topline {
+  display: block;
+  width: 100%;
+  margin-bottom: 2px;
+  overflow: auto;
+}
+
+.card-price {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+  font-style: normal;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  box-sizing: border-box;
+
+  display: inline;
+  float: left;
+}
+
+.card-list-inline {
+  font-size: 14px;
+  line-height: 1.4;
+
+  min-height: 14px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  list-style-type: none;
+
+  display: inline;
+  float: right;
+}
+
+.card-list-inline > li {
+  margin-left: 0;
+  display: inline;
+  vertical-align: baseline;
+  padding-left: 5px;
+
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #869099;
+  white-space: nowrap;
+
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.banner-rental {
+  vertical-align: middle;
+
+  position: relative;
+  
+  padding: 8px 18px 8px 12px;
+
+  margin-left: -30px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+
+  border: 1px solid transparent;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+
+  color: #1b1e21;
+  background-color: #f6f8f7;
+  border-color: #c6c8ca;
+
+  display: inline-block;
+}
+
+.banner-spider {
+  width: 28px;
+  height: auto;
+
+  vertical-align: middle;
+}
+
+.banner-text {
+  vertical-align: middle;
+  margin-left: 6px;
+
+  font-size: 16px;
+  font-weight: 400;
+  color: #3b4144;
+}
+
+.trulia-link:hover {
+  text-decoration: none;
+}

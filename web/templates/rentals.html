@@ -1,0 +1,102 @@
+{%- extends "base.html" %}
+
+{% block content %}
+  <div class="fill-parent flex-container">
+    <div class="nav-container">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #20c063;">
+        <a class="navbar-brand" href="#">Trulia Crawler</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ nh_query }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/">All Neighborhoods</a>
+              <div class="dropdown-divider"></div>
+
+              {% for nhg in nh_groups %}                
+                {% for nh in nhg.neighborhoods %}
+                  <a class="dropdown-item" href="/n/{{ nh.nh_id }}">{{ nh.name }}</a>
+                {% endfor %}
+                {% if nhg.nhg_id < nh_groups|length - 1 %}
+                  <div class="dropdown-divider"></div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+    <div class="content-container">
+      <div class="rentals-container">
+        {% for d, pg in presented %}          
+          <div class="banner-rental">
+            <img class="banner-spider" src="{{ url_for('static', filename='spider1.svg') }}">              
+            <span class="banner-text">{{ d }}</span>
+          </div>          
+          <div class="row row-card">
+            {% for p in pg %}    
+              <div class="col-card">
+                <a href="{{ p.url() }}" class="trulia-link">
+                  <div class="card">                  
+                    <div class="card-img" style="background-image: url('{{ p.thumbnail_url() }}');">
+                      <div class="taglist-container">
+                        <ul class="taglist">
+                          {% for tag in p.tags() %}
+                            <li class="tag-lowlight">{{ tag }}</li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-topline">
+                        <div class="card-price">{{ p.price() }}</div>
+                        <ul class="card-list-inline">
+                          {% if p.has_bedrooms() %}
+                            <li>{{ p.bedrooms() }}bd</li>
+                          {% endif %}
+                          {% if p.has_bathrooms() %}
+                            <li>{{ p.bathrooms() }}ba</li>
+                          {% endif %}                    
+                          {% if p.has_sqft() %}
+                            <li>{{ p.sqft() }} sqft</li>
+                          {% endif %}
+                        </ul>
+                      </div>
+                      <div class="card-text">{{ p.address() }}</div>
+                      <div class="card-text">{{ p.neighborhood() }}</div>
+                    </div>
+                  </div>
+                </a>
+              </div>      
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="right-container">
+        <div class="loading-container">
+          <span id="loading-text" class="loading-text invisible">Loading...</span>    
+        </div>
+        <div id="frame-holder" class="frame-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function(){
+      $('.trulia-link').click(function(){
+        $('#loading-text').removeClass('invisible');
+
+        oldFrame = $('#trula-frame');
+        oldFrame.remove();
+
+        newSrc = $(this).attr('href');
+        newFrame = $('<iframe>').attr('src',newSrc).attr('id','trula-frame');
+        newFrame.prependTo('#frame-holder');
+
+        return false;
+      });
+    });
+  </script>
+{%- endblock %}
