@@ -30,10 +30,11 @@
     </div>
     <div class="content-container">
       <div class="rentals-container">
-        {% for d, pg in presented %}          
+        {% for d, rd, pg in presented %}          
           <div class="banner-rental">
-            <img class="banner-spider" src="{{ url_for('static', filename='spider1.svg') }}">              
-            <span class="banner-text">{{ d }}</span>
+            <img class="banner-spider" src="{{ url_for('static', filename='spider1.svg') }}">            
+            <span class="banner-text banner-bold">{{ d }}</span>
+            <span class="banner-text banner-light">({{ rd }})</span>
           </div>          
           <div class="row row-card">
             {% for p in pg %}    

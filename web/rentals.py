@@ -3,10 +3,11 @@ from flask import Blueprint, render_template, flash, request, redirect, url_for
 from store.service import Service
 from store.models import Neighborhood, NeighborhoodGroup
 
-from datetime import timezone
+from datetime import datetime, timezone
 from pprint import pprint
 from six.moves.urllib.parse import urljoin
 import pytz
+import humanize
 
 rentals = Blueprint('rentals', __name__)
 service = Service()
@@ -25,10 +26,18 @@ def get_nh_query_description(nh_id):
 
 def string_date(dt):
     pacific_tz = pytz.timezone('US/Pacific')
-    return dt.replace(tzinfo=timezone.utc).astimezone(tz=pacific_tz).strftime('%B %d \u2014 %l:%M %p')
+    return dt.replace(tzinfo=timezone.utc).astimezone(tz=pacific_tz).strftime('%a, %B %d \u2014 %l:%M %p')
+
+def relative_date(dt):
+    relative = datetime.now() - dt
+    return humanize.naturaltime(relative)
 
 def present_grouped_rentals(grouped):
-    return [[string_date(dt), [RentalPresenter(r) for r in g]] for dt, g in grouped]
+    return [[
+        string_date(dt),
+        relative_date(dt),
+        [RentalPresenter(r) for r in g
+    ]] for dt, g in grouped]
 
 class RentalPresenter(object):
     def __init__(self, ro):
