@@ -2,23 +2,23 @@
 @font-face {
   font-family:'PostGrotesk';
   font-weight: 400;
-  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.eot');
-  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.eot') format('eot'), 
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.woff') format('woff2'), 
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.woff') format('woff'), 
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.svg') format('svg'),
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.otf') format('opentype');
+  src:url('https://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.eot');
+  src:url('https://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.eot') format('eot'), 
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.woff') format('woff2'), 
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.woff') format('woff'), 
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.svg') format('svg'),
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskBook_20150623/PostGrotesk-Book.otf') format('opentype');
 }
 
 @font-face {
   font-family:'PostGrotesk';
   font-weight: 500;
-  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.eot');
-  src:url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.eot') format('eot'), 
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.woff') format('woff2'), 
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.woff') format('woff'), 
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.svg') format('svg'),
-  url('http://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.otf') format('opentype');
+  src:url('https://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.eot');
+  src:url('https://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.eot') format('eot'), 
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.woff') format('woff2'), 
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.woff') format('woff'), 
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.svg') format('svg'),
+  url('https://static.trulia-cdn.com/images/fonts/PostGroteskMedium/PostGrotesk-Medium.otf') format('opentype');
 }
 
 body, html {
@@ -74,10 +74,8 @@ body {
 
 .right-container {
   position: relative;
-
+  display: flex;
   flex-grow: 1;    
-  height: 100%;  
-
   border-left: 1px solid #B6C0C9;
 }
 
