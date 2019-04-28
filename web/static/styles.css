@@ -23,7 +23,6 @@
 
 body, html {
   height: 100%;
-  width: 100%;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -33,6 +32,19 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: PostGrotesk,sans-serif,San Francisco,Roboto,Segoe UI Bold,Arial,sans-serif;
 }
+
+
+/*
+body, html {
+  background-color: #0000ff;
+}
+
+body {
+  width: 375px;
+  background-color: white;  
+}
+*/
+
 
 .fill-parent {
   height: 100%;
@@ -55,26 +67,42 @@ body {
   color: rgba(255,255,255,1);
 }
 
+.navbar-brand img {
+  margin-right: 5px;
+}
+
 .content-container {
   display: flex;
   flex-flow: row nowrap;
   flex-grow: 1;
+
   width: 100%; 
+  height: 100%;
 }
 
-.rentals-container {
-  width: 50%;
-  min-width: 250px;
-  max-width: 720px;
-  overflow-y: scroll;
-  padding: 5px 30px 0 30px;
+.left-container {
+  position: relative;
+  display: flex;
+
+  width: 50%;  
+  min-width: 515px;
+  max-width: 740px;
+
+  overflow-x: hidden;
+  overflow-y: scroll;  
+  -webkit-overflow-scrolling: touch;
 }
 
 .right-container {
   position: relative;
   display: flex;
-  flex-grow: 1;    
+  flex-grow: 1;
   border-left: 1px solid #B6C0C9;
+}
+
+.rentals-container {
+  width: 100%;
+  padding-top: 5px;
 }
 
 .frame-container {
@@ -111,13 +139,24 @@ body {
   border: none;
 }
 
+.row-rentals-banner {
+  width: 100%;
+}
+
+.row-rentals-crawl {
+  max-width: 720px;
+  padding: 0 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
 .row-card {
   padding-left: 15px;
 }
 
 .col-card {
   width: 210px;
-
   position: relative;
   min-height: 1px;
   margin-right: 15px;
@@ -278,11 +317,11 @@ body {
   
   padding: 8px 18px 8px 12px;
 
-  margin-left: -30px;
-  margin-top: 20px;
-  margin-bottom: 25px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 
   border: 1px solid transparent;
+  border-left-style: none;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 
@@ -320,4 +359,83 @@ body {
 
 .trulia-link:hover {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 515px) {
+  .left-container {
+    min-width: 345px;
+  }
+
+  .row-rentals-crawl {
+    max-width: 345px;
+    padding: 0 5px;
+  }
+
+  .row-card {
+    padding-left: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .col-card {
+    width: 160px;
+    margin-right: 15px;
+  }
+
+  .card-img {
+    min-height: 106px;
+  }
+
+  .card-body {
+    padding: 5px 7px;
+  }
+
+  .card-price {
+    font-size: 14px;
+  }
+
+  .card-list-inline > li {
+    padding-left: 2px;
+    font-size: 11px;    
+  }
+
+  .card-text {
+    font-size: 11px;
+  }
+
+  .banner-rental {
+    width: 100%;
+
+    padding: 4px 16px 4px 6px;
+
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    border-right-style: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .banner-spider {
+    width: 28px;
+    height: auto;
+
+    vertical-align: middle;
+  }
+
+  .banner-text {
+    vertical-align: middle;
+    margin-left: 6px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .left-container {
+    width: 100%;
+  }
+
+  .right-container {
+    display: none;
+  }
 }

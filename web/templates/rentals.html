@@ -4,7 +4,10 @@
   <div class="fill-parent flex-container">
     <div class="nav-container">
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #20c063;">
-        <a class="navbar-brand" href="#">Trulia Crawler</a>
+        <a class="navbar-brand" href="#">
+          <img src="{{ url_for('static', filename='spider1.svg') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+          Trulia Crawler
+        </a>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,51 +32,56 @@
       </nav>
     </div>
     <div class="content-container">
-      <div class="rentals-container">
-        {% for d, rd, pg in presented %}          
-          <div class="banner-rental">
-            <img class="banner-spider" src="{{ url_for('static', filename='spider1.svg') }}">            
-            <span class="banner-text banner-bold">{{ d }}</span>
-            <span class="banner-text banner-light">({{ rd }})</span>
-          </div>          
-          <div class="row row-card">
-            {% for p in pg %}    
-              <div class="col-card">
-                <a href="{{ p.url() }}" class="trulia-link">
-                  <div class="card">                  
-                    <div class="card-img" style="background-image: url('{{ p.thumbnail_url() }}');">
-                      <div class="taglist-container">
-                        <ul class="taglist">
-                          {% for tag in p.tags() %}
-                            <li class="tag-lowlight">{{ tag }}</li>
-                          {% endfor %}
-                        </ul>
+      <div class="left-container">
+        <div class="rentals-container">
+          {% for d, rd, pg in presented %}     
+            <div class="row-rentals-banner">     
+              <div class="banner-rental">
+                <span class="banner-text banner-bold">{{ d }}</span>
+                <span class="banner-text banner-light">({{ rd }})</span>
+              </div>
+            </div>
+            <div class="row-rentals-crawl">
+              <div class="row row-card">
+                {% for p in pg %}    
+                  <div class="col-card">
+                    <a href="{{ p.url() }}" class="trulia-link">
+                      <div class="card">                  
+                        <div class="card-img" style="background-image: url('{{ p.thumbnail_url() }}');">
+                          <div class="taglist-container">
+                            <ul class="taglist">
+                              {% for tag in p.tags() %}
+                                <li class="tag-lowlight">{{ tag }}</li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="card-topline">
+                            <div class="card-price">{{ p.price() }}</div>
+                            <ul class="card-list-inline">
+                              {% if p.has_bedrooms() %}
+                                <li>{{ p.bedrooms() }}bd</li>
+                              {% endif %}
+                              {% if p.has_bathrooms() %}
+                                <li>{{ p.bathrooms() }}ba</li>
+                              {% endif %}                    
+                              {% if p.has_sqft() %}
+                                <li>{{ p.sqft() }} ft&sup2</li>
+                              {% endif %}
+                            </ul>
+                          </div>
+                          <div class="card-text">{{ p.address() }}</div>
+                          <div class="card-text">{{ p.neighborhood() }}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="card-topline">
-                        <div class="card-price">{{ p.price() }}</div>
-                        <ul class="card-list-inline">
-                          {% if p.has_bedrooms() %}
-                            <li>{{ p.bedrooms() }}bd</li>
-                          {% endif %}
-                          {% if p.has_bathrooms() %}
-                            <li>{{ p.bathrooms() }}ba</li>
-                          {% endif %}                    
-                          {% if p.has_sqft() %}
-                            <li>{{ p.sqft() }} sqft</li>
-                          {% endif %}
-                        </ul>
-                      </div>
-                      <div class="card-text">{{ p.address() }}</div>
-                      <div class="card-text">{{ p.neighborhood() }}</div>
-                    </div>
-                  </div>
-                </a>
-              </div>      
-            {% endfor %}
-          </div>
-        {% endfor %}
+                    </a>
+                  </div>      
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
       <div class="right-container">
         <div class="loading-container">
@@ -87,16 +95,23 @@
   <script type="text/javascript">
     $(function(){
       $('.trulia-link').click(function(){
-        $('#loading-text').removeClass('invisible');
+        var x = window.matchMedia("(min-width: 600px)")
+        if (x.matches) {
+          $('#loading-text').removeClass('invisible');
 
-        oldFrame = $('#trula-frame');
-        oldFrame.remove();
+          oldFrame = $('#trula-frame');
+          oldFrame.remove();
 
-        newSrc = $(this).attr('href');
-        newFrame = $('<iframe>').attr('src',newSrc).attr('id','trula-frame');
-        newFrame.prependTo('#frame-holder');
+          newSrc = $(this).attr('href');
+          newFrame = $('<iframe>').attr('src',newSrc).attr('id','trula-frame');
+          newFrame.prependTo('#frame-holder');
 
-        return false;
+          // Prevent default action
+          return false;
+        } else {
+          // Use the default action
+          return true;          
+        }
       });
     });
   </script>
